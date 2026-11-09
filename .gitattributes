@@ -7,3 +7,4 @@
 *.beswrpt linguist-language=HTML linguist-detectable
 # https://stackoverflow.com/a/68932262
 *.reg working-tree-encoding=UTF-16 eol=CRLF
+* text=auto
