@@ -1,0 +1,79 @@
+---
+# run on only items staged in git:  pre-commit
+# automatically run on commit:      pre-commit install
+# check all files in repo:          pre-commit run --all-files
+# check all files manual stage:     pre-commit run --all-files --hook-stage manual
+# update all checks to latest:      pre-commit autoupdate --freeze
+# https://github.com/pre-commit/pre-commit-hooks
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # frozen: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-xml
+      - id: end-of-file-fixer
+      # https://www.aleksandrhovhannisyan.com/blog/crlf-vs-lf-normalizing-line-endings-in-git/
+      # - id: mixed-line-ending
+      #   args: ['--fix=no']
+      - id: trailing-whitespace
+      - id: detect-private-key
+
+  - repo: https://github.com/jgstew/pre-commit-bigfix
+    rev: e2be9a8e47a2e9862c1f34a63b9a9467d6e79516 # frozen: v1.13.0
+    hooks:
+      - id: bes-schema-validate
+      - id: bes-actionscript-lint-schclass
+      - id: bes-actionscript-validate-script
+      - id: bes-actionscript-validate-prefetch
+        # args: [--auto-fix-network, "yes"]
+        # args: [--disable, "E401"]
+      - id: bes-conventions-check
+        args: [--strict, --disable, "W207,W206,W212,W214"]
+        exclude: |
+          (?x)^(
+            fixlet/RESTAPI_\ Generate\ uninstall\ tasks\ for\ all\ MSI\ applications\ on\ target\ computer\ -\ Windows\.bes|
+            fixlet/Tasks_UninstallApplicationsMSI_Windows.bes
+          )$
+      - id: bes-relevance-lint
+        exclude: |
+          (?x)^(
+            fixlet/RESTAPI_\ Generate\ uninstall\ tasks\ for\ all\ MSI\ applications\ on\ target\ computer\ -\ Windows\.bes
+          )$
+      # ---- MANDATORY, AND LAST: it can rename .bes files, which hooks
+      # after it in the same run would no longer find.
+      # Check the site layout, numeric-ID file names and path length.
+      # - id: bes-siterepo-validate-layout
+
+  # - repo: https://github.com/adrienverge/yamllint.git
+  #   rev: cba56bcde1fdd01c1deb3f945e69764c291a6530 # frozen: v1.38.0
+  #   hooks:
+  #     - id: yamllint
+  #       args: []
+
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 4f85d46a92dc17713078e5de73f8a13190edf6fc # frozen: 0.38.2
+    hooks:
+      - id: check-github-workflows
+        args: ["--verbose"]
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: 57b21406f092110c18776e39b0bda50d37c945c8 # frozen: v2.4.3
+    hooks:
+      - id: codespell
+        # `ths` is the session relevance inspector for html <th> elements:
+        args: ["-L", "ths"]
+        # exported BES content is full of product names and relevance
+        # keywords; WordGame.besrpt embeds an entire word list:
+        exclude: \.(bes|ojo)$|^webreports/WordGame\.besrpt$
+
+  - repo: meta
+    hooks:
+      - id: check-useless-excludes
+        stages: [manual]
+      - id: check-hooks-apply
+        stages: [manual]

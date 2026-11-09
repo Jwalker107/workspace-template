@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Auto-create Python Venv",
+            "type": "shell",
+            "windows": {
+                "command": "if not exist .venv ( py -3.14 -m venv .venv )"
+            },
+            "linux": {
+                "command": "if [ ! -d '.venv' ]; then python3.14 -m venv .venv; fi"
+            },
+            "osx": {
+                "command": "if [ ! -d '.venv' ]; then python3.14 -m venv .venv; fi"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared",
+                "clear": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "bigfix-root": {
+            "command": "bigfix-root-mcp",
+            "args": [],
+            "env": {
+                "xBES_ROOT_SERVER": "https://<ROOT_SERVER_HOST>:52311",
+                "xBES_USER_NAME": "<BES_USER_NAME>",
+                "xBES_PASSWORD": "<BES_PASSWORD>"
+            }
+        }
+    }
+}

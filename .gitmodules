@@ -1,0 +1,3 @@
+[submodule ".agents/skills/bigfix-skill"]
+	path = .agents/skills/bigfix-skill
+	url = https://github.com/Jwalker107/bigfix-skill.git

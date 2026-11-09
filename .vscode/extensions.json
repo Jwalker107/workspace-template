@@ -1,0 +1,13 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"ms-python.python",
+		"EditorConfig.EditorConfig",
+		"ms-python.isort",
+		"redhat.vscode-yaml",
+		"ms-python.black-formatter",
+		"github.vscode-github-actions",
+		"jgstew.bigfix-relevance-developer"
+	]
+}

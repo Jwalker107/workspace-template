@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"chat.tools.terminal.autoApprove": {
+			"git rev-parse": true
+		},
+		"powershell.cwd": "${workspaceFolder}",
+		"gitlens.advanced.repositorySearchDepth": 4,
+		"git.repositoryScanMaxDepth": 4,
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": null,
+		"files.eol": "\n",
+		"python.createEnvironment.trigger": "prompt",
+		"python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+		"files.associations": {
+			"*.bes": "xml"
+		},
+		"[*.bes]": {
+			"files.eol": "\r\n"
+		}
+	}
+}
